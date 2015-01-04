@@ -8,6 +8,7 @@
 
 include_once 'includes/db_connect.php';
 include_once 'includes/functions.php';
+include "Includes/menu.php";
 
 sec_session_start();
 
@@ -21,7 +22,7 @@ if (login_check($mysqli) == true) {
 <html>
 <head>
     <title>Secure Login: Log In</title>
-    <link rel="stylesheet" href="styles/main.css" />
+    <link href="style.css" type="text/css" rel="stylesheet"/>
     <script type="text/JavaScript" src="js/sha512.js"></script>
     <script type="text/JavaScript" src="js/forms.js"></script>
 </head>
@@ -30,9 +31,12 @@ if (login_check($mysqli) == true) {
 if (isset($_GET['error'])) {
     echo '<p class="error">Error Logging In!</p>';
 }
+
 ?>
-<form action="includes/process_login.php" method="post" name="login_form">
+<p id="login-wrapper">
+<form action="includes/process_login.php" method="post" name="login_form ">
     Email: <input type="text" name="email" />
+    <br>
     Password: <input type="password"
                      name="password"
                      id="password"/>
@@ -40,8 +44,7 @@ if (isset($_GET['error'])) {
            value="Login"
            onclick="formhash(this.form, this.form.password);" />
 </form>
-<p>If you don't have a login, please <a href="register.php">register</a></p>
-<p>If you are done, please <a href="includes/logout.php">log out</a>.</p>
-<p>You are currently logged <?php echo $logged ?>.</p>
+</p>
+<p>If you don't have a login, please <a href="sign.php">register</a></p>
 </body>
 </html>

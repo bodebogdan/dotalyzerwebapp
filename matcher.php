@@ -15,10 +15,12 @@ $unique_id = generateRandomString(32);
 <!DOCTYPE html>
 <html>
 <head>
-
+<?php
+?>
     <title>DotaLyzer</title>
     <link href="style.css" type="text/css" rel="stylesheet"/>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/matcher.js"></script>
     <script>
         $(document).ready(function(){
             $('.button').click(function(){
@@ -39,6 +41,7 @@ $unique_id = generateRandomString(32);
         });
     </script>
 
+
 </head>
 <body>
 
@@ -48,6 +51,8 @@ include "Includes/menu.php";
 ?>
 
 <div id="content">
-      <input type="submit" class="button" name="match" value="match" data-unique-id="<?= $unique_id ?>" /></div>
+      <input type="submit" class="button" name="match" value="match" data-unique-id="<?= $unique_id ?>" />
+
+</div>
 </body>
 </html>
