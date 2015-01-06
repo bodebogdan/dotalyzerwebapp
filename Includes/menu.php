@@ -4,8 +4,16 @@ define('SITE_URL', 'http://dotalizer.dota/');
 <div id="nav">
     <div id="nav_wrapper">
         <?php
-        if(isset($_SESSION['dotalyzer'])){
-
+        if(isset($_SESSION['username'])){
+        ?>
+            <ul class="nav_right">
+            <li><a href="<?= SITE_URL ?>scripts/logout.php">Logout</a>
+            </li>
+                <li>
+                   <a href="javascript:void(0)"> <?php echo $_SESSION['username'] ;?></a>
+                </li>
+            </ul>
+        <?php
         } else {
         ?>
         <ul class="nav_right">

@@ -1,4 +1,8 @@
 <?php
+include_once 'includes/db_connect.php';
+include_once 'includes/functions.php';
+
+sec_session_start();
 
 $ID = filter_input(INPUT_GET, 'ID', FILTER_SANITIZE_NUMBER_INT);
 $name =  filter_input(INPUT_GET, 'HeroName', FILTER_SANITIZE_STRING);

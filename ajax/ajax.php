@@ -18,12 +18,13 @@ function match()
     $myfile = '../generated/' . $_POST['id'] . '.txt';
 
     for ($i = 0; $i < 5; $i++) {
-        echo $result[$i] . "\n";
+        //echo $result[$i] . "\n";
         $content .= $result[$i] . "\r\n";
     }
-    displayTeam($content);
+    $images = displayTeam($content);
     file_put_contents($myfile, $content);
 
+    echo $images;
 }
 
 function displayTeam($heroes){
@@ -43,30 +44,33 @@ function displayTeam($heroes){
     }
 
 
-
+    while (odbc_fetch_row($rs)) {
         foreach(preg_split("/((\r?\n)|(\r\n?))/", $heroes) as $line){
-            while (odbc_fetch_row($rs)) {
+
                 $heroname = odbc_result($rs, "HeroName");
 
                 if ($line == $heroname) {
-
                     $heroimage = odbc_result($rs, "Portrait");
-                    $herolist[$i++] = $heroimage . ".png";
+                    $herolist[++$i] = $heroimage . ".png";
                 }
             }
         }
 
+//delete this after it works
+    //var_dump($herolist);
 
 
     odbc_close($conn);
+
+    return json_encode($herolist);
    // var_dump($heroes);die;
 
 
-    echo " <div class='heroimage_wrapper'>";
-    for ($i = 0; $i < count($herolist); $i++) {
-        echo " <img src='Hero icons/$herolist[$i]' class='heroimage'>";
-    }
-
-    echo " </div>";
+//    echo " <div class='heroimage_wrapper'>";
+//    for ($i = 0; $i < count($herolist); $i++) {
+//        echo " <img src='Hero icons/$herolist[$i]' class='heroimage'>";
+//    }
+//
+//    echo " </div>";
 }
 ?>

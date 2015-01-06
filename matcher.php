@@ -1,4 +1,10 @@
 <?php
+
+include_once 'includes/db_connect.php';
+include_once 'includes/functions.php';
+
+sec_session_start();
+
 function generateRandomString($length = 10) {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);
@@ -12,6 +18,7 @@ function generateRandomString($length = 10) {
 $unique_id = generateRandomString(32);
 ?>
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +30,7 @@ $unique_id = generateRandomString(32);
     <script type="text/javascript" src="js/matcher.js"></script>
     <script>
         $(document).ready(function(){
-            $('.button').click(function(){
+            $('.match-button').click(function(){
                 var clickBtnValue = $(this).val();
                 var id = $(this).attr('data-unique-id');
                 var ajaxurl = 'ajax/ajax',
@@ -33,12 +40,26 @@ $unique_id = generateRandomString(32);
                     };
                     console.log(clickBtnValue);
                 $.post(ajaxurl, data, function (response) {
-                    // Response div goes here.
-                    alert(response.replace('\\n', '\n'));
+                    var heroes = null;
+                    heroes = $.parseJSON(response);
+                    var html = '';
+                    console.log(response)
+                    console.log(heroes)
+                    $.each(heroes, function(i){
+                        if(i == 6)
+                            return;
+
+                        html += '<img src="Hero Icons/' + this + '" class="heroimage heroimage-small">';
+
+                    })
+
+                    $('#content').prepend(html);
                 });
+                $('.match-button').hide();
             });
 
         });
+
     </script>
 
 
@@ -50,9 +71,8 @@ $unique_id = generateRandomString(32);
 include "Includes/menu.php";
 ?>
 
-<div id="content">
-      <input type="submit" class="button" name="match" value="match" data-unique-id="<?= $unique_id ?>" />
-
+<div id="content" style="text-align:center;">
+      <input type="submit" class="match-button" name="match" value="match" data-unique-id="<?= $unique_id ?>" />
 </div>
 </body>
 </html>

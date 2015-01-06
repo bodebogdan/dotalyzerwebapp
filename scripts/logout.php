@@ -1,5 +1,5 @@
 <?php
-include_once 'functions.php';
+include_once '../Includes/functions.php';
 sec_session_start();
 
 // Unset all session values 

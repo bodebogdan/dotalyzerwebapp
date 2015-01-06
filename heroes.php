@@ -1,4 +1,9 @@
 <?php
+include_once 'includes/db_connect.php';
+include_once 'includes/functions.php';
+
+sec_session_start();
+
 $conn = odbc_connect('Dotalyzer', '', '');
 if (!$conn) {
     exit("Connection Failed: " . $conn);

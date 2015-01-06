@@ -4,3 +4,8 @@ RewriteRule ^hero/([^/]+)/([^/\.]+)/?$  herodetails.php?ID=$1&HeroName=$2
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule (.*) $1.php [L]
+ErrorDocument 400 http://dotalizer.dota/error
+ErrorDocument 401 http://dotalizer.dota/error
+ErrorDocument 403 http://dotalizer.dota/error
+ErrorDocument 404 http://dotalizer.dota/error
+ErrorDocument 500 http://dotalizer.dota/error
