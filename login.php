@@ -34,8 +34,8 @@ if (isset($_GET['error'])) {
 
 ?>
 <p id="login-wrapper">
-<form action="includes/process_login.php" method="post" name="login_form ">
-    Email: <input type="text" name="email" />
+<form action="includes/process_login.php" method="post" name="login_form " class="login">
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbspEmail: <input type="text" name="email" />
     <br>
     Password: <input type="password"
                      name="password"
@@ -45,6 +45,6 @@ if (isset($_GET['error'])) {
            onclick="formhash(this.form, this.form.password);" />
 </form>
 </p>
-<p>If you don't have a login, please <a href="sign.php">register</a></p>
+<p style="text-align:center; position:relative; font-size:20px;">If you don't have a login, please <a href="sign.php">register</a></p>
 </body>
 </html>

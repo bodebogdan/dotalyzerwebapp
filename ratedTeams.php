@@ -35,37 +35,63 @@ if ($mysqli->connect_error) {
 
     <title>DotaLyzer</title>
     <link href="style.css" type="text/css" rel="stylesheet"/>
+
 </head>
 <body>
 
 <?php
 include "Includes/menu.php";
-$sql = "SELECT * FROM teams ORDER BY 'rate' DESC , 'count' DESC ";
-$herolist = array("hero1","hero2","hero3","hero4","hero5");
+$sql = "SELECT * FROM teams ORDER BY 'rate' DESC , 'count' ASC ";
+$herolist = array("hero1", "hero2", "hero3", "hero4", "hero5");
 
 $result = $mysqli->query($sql);
 ?>
-<div id="team-content">
+<div id="team-display-content">
     <?php
     if ($result->num_rows > 0) {
     // output data of each row
     while ($row = $result->fetch_assoc()) {
-    echo $row['user']."    ";
-    foreach ($herolist as $hero){?>
+    ?> <p style="float:left; width: 100px;">
+        <?php
+        echo $row['user'] . "    ";
+        ?>
+    </p>
+    <?php
+    foreach ($herolist as $hero){
+    ?>
 
     <div class="heroimage_wrapper">
 
         <a href="javascript:void(0)" class="heroimage-link">
             <?php
-            echo " <img src='Hero%20icons/".$row["$hero"].".png' class='heroimage'>
+            echo " <img src='Hero%20icons/" . $row["$hero"] . ".png' class='heroimage'>
                         </a>
 
                 </div>";
             }
-            echo $row["description"];
-            echo "||||||||||||";
-            echo "Rating:".$row["rate"]/($row["count"]+1);
-            echo "<br>";
+
+            ?>
+            <div class="hero_rating">
+                <?php
+                foreach (range(1, 5) as $rating) {
+                    ?>
+
+                    <a href="rating.php?team=<?php echo $row["ID"] ?>&rating=<?php echo $rating ?>"><img
+                            id="<?php echo $rating ?>" src="pics/star.png" style="width:20px;">
+
+                    </a>
+
+                <?php
+                }
+
+                echo $row["description"];
+                echo "||||||||||||";
+                echo "Rating:" . round($row["rate"] / ($row["count"]));
+                echo "<br>";
+
+                ?>
+            </div>
+            <?php
 
             }
             } else {
@@ -74,5 +100,6 @@ $result = $mysqli->query($sql);
             $mysqli->close();
             ?>
     </div>
+
 </body>
 </html>

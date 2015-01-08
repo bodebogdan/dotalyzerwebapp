@@ -37,6 +37,24 @@
     padding-left:450px;
 }
 
+#team-display-content{
+    margin: 0px auto;
+    width: 960px;
+    padding-top: 200px;
+    padding-left:250px;
+    z-index: 1;
+    position:relative;
+}
+.hero_rating{
+    display: block;
+    width: 100%;
+    position: relative;
+    margin: 15px auto 45px;
+    text-indent: 100px;
+    font-weight: bold;
+}
+
+
 .input_fields_wrap {
 
     margin: 0px auto;

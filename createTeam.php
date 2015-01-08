@@ -101,7 +101,7 @@ include "Includes/menu.php"
 
     </div>
 
-    <form style="padding-left:770px ; padding-top:350px; font-family: Arial; font-size: 17px ;" method="POST" action="saveteam.php">
+    <form style="padding-left:770px ; padding-top:380px; font-family: Arial; font-size: 17px ;" method="POST" action="saveteam.php">
         <input name="heroes" id="heroes" type="hidden"/>
         <strong>Description:</strong><br><br>
         <textarea name="description" style="color:#000000 ; background-color:#373737 ; font-family: Arial; font-size: 17px" rows="5" cols="40" id="description"></textarea>
